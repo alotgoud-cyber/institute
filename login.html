@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Language Institute</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">logo</a>
+      <nav class="nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="courses.html">Language courses</a></li>
+        </ul>
+      </nav>
+      <div></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="auth-page">
+      <div class="auth-card">
+        <h2>Welcome Back</h2>
+        <p class="auth-subtitle">Login to access your courses</p>
+
+        <div id="login-alert"></div>
+
+        <form id="loginForm" onsubmit="return handleLogin(event)">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="student@institute.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required minlength="6">
+          </div>
+
+          <button type="submit" class="btn-submit">Login</button>
+        </form>
+
+        <p class="auth-link" style="margin-top:15px; font-size:13px; color:#666;">
+          Demo account: <strong>student@institute.com</strong> / <strong>123456</strong>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <div class="footer-wave"></div>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-logo">logo</div>
+        <div class="footer-links">
+          <h4>LINKS</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="courses.html">Language courses</a></li>
+            <li><a href="login.html">Login</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact information</h4>
+          <div class="contact-item">
+            <div class="contact-icon"><svg viewBox="0 0 24 24" fill="white"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg></div>
+            <div><div class="contact-text-label">Phone</div><div class="contact-text-value">1234566777</div></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><svg viewBox="0 0 24 24" fill="white"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+            <div><div class="contact-text-label">Email</div><div class="contact-text-value">email@gmail.com</div></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><svg viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+            <div><div class="contact-text-label">Location</div><div class="contact-text-value">Your Address here</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">COPY RIGHT 2026</div>
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script>
+    function handleLogin(event) {
+      event.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const alertBox = document.getElementById('login-alert');
+
+      const result = loginUser(email, password);
+
+      if (result.success) {
+        alertBox.innerHTML = '<div class="alert alert-success">Login successful! Redirecting...</div>';
+        setTimeout(() => {
+          window.location.href = 'courses.html';
+        }, 1000);
+      } else {
+        alertBox.innerHTML = `<div class="alert alert-error">${result.message}</div>`;
+      }
+      return false;
+    }
+  </script>
+</body>
+</html>
