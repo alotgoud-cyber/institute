@@ -1,8 +1,5 @@
-// =========================================
-// Main JavaScript - Course rendering
-// =========================================
+// Renders course cards and details
 
-// ----- Render Course Card -----
 function renderCourseCard(course) {
   return `
     <div class="course-card">
@@ -22,26 +19,22 @@ function renderCourseCard(course) {
   `;
 }
 
-// ----- Render featured courses on Home page (first 4) -----
 function renderFeaturedCourses() {
   const container = document.getElementById('featured-courses');
   if (!container) return;
   container.innerHTML = COURSES.slice(0, 4).map(c => renderCourseCard(c)).join('');
 }
 
-// ----- Render all courses on Courses page -----
 function renderAllCourses() {
   const container = document.getElementById('all-courses');
   if (!container) return;
   container.innerHTML = COURSES.map(c => renderCourseCard(c)).join('');
 }
 
-// ----- Render Course Details Page -----
 function renderCourseDetails() {
   const container = document.getElementById('course-details-content');
   if (!container) return;
 
-  // Read ID from URL
   const params = new URLSearchParams(window.location.search);
   const id = parseInt(params.get('id')) || 1;
 
@@ -65,7 +58,6 @@ function renderCourseDetails() {
   `;
 }
 
-// ----- Init: Run on DOM Ready -----
 document.addEventListener('DOMContentLoaded', () => {
   renderFeaturedCourses();
   renderAllCourses();

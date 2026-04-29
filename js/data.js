@@ -1,7 +1,4 @@
-// =========================================
-// Courses Data (mock database)
-// =========================================
-// In a real app, this data would come from a server.
+// Courses data
 
 const COURSES = [
   {
